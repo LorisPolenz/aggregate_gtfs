@@ -1,0 +1,4 @@
+pandas==2.2.3
+minio==7.2.10
+pyarrow==18.0.0
+duckdb==1.1.3
