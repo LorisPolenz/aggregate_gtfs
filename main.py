@@ -87,8 +87,8 @@ result = conn.execute(f"""
 
 parquet_buffer = BytesIO()
 result.to_parquet(parquet_buffer)
-parquet_buffer.seek(0)
 
+parquet_buffer.seek(0)
 s3_remote.put_object(
     bucket_name=os.getenv('REMOTE_S3_BUCKET_PUBLIC'),
     object_name="current_feed.parquet",
@@ -97,6 +97,7 @@ s3_remote.put_object(
     content_type='application/octet-stream'
 )
 
+parquet_buffer.seek(0)
 s3_remote.put_object(
     bucket_name=os.getenv('REMOTE_S3_BUCKET_PUBLIC'),
     object_name=f"feed_{int(datetime.now().timestamp())}.parquet",
