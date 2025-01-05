@@ -96,3 +96,11 @@ s3_remote.put_object(
     length=parquet_buffer.getbuffer().nbytes,
     content_type='application/octet-stream'
 )
+
+s3_remote.put_object(
+    bucket_name=os.getenv('REMOTE_S3_BUCKET_PUBLIC'),
+    object_name=f"feed_{int(datetime.now().timestamp())}.parquet",
+    data=parquet_buffer,
+    length=parquet_buffer.getbuffer().nbytes,
+    content_type='application/octet-stream'
+)
